@@ -4,6 +4,8 @@ var prompt = ">> ";
 var br = "<br />";
 var charName = "";
 
+logOutput(`${prompt} Ready when you are`)
+
 function resetLog() {
 	$('#output').empty();
 }

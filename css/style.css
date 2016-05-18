@@ -4,10 +4,24 @@ td {
 	width: 11px;
 }
 
+h1 {
+  font-family: Helvetica, Arial, sans-serif
+}
+
+button.hit {
+  color: red;
+}
+
+button.start {
+  color: green;
+}
+
 #output {
   background-color: black;
   border-radius: 8px;
   color: white;
+  font-family: Monospace, sans-serif;
+  font-size: 13px;
   height: 75px;
   margin-top: 20px;
   padding: 8px;
@@ -17,10 +31,10 @@ td {
 /* Blink Animation */
 
 blink, .blink {
-  -webkit-animation: blink 1s step-end infinite;
-  -moz-animation: blink 1s step-end infinite;
-  -o-animation: blink 1s step-end infinite;
-  animation: blink 1s step-end infinite;
+  -webkit-animation: blink 0.35s step-end infinite;
+  -moz-animation: blink 0.35s step-end infinite;
+  -o-animation: blink 0.35s step-end infinite;
+  animation: blink 0.35s step-end infinite;
 }
 
 @-webkit-keyframes blink {
