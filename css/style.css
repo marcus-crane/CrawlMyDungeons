@@ -4,6 +4,16 @@ td {
 	width: 11px;
 }
 
+#output {
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+  height: 75px;
+  margin-top: 20px;
+  padding: 8px;
+  width: 600px;
+}
+
 /* Blink Animation */
 
 blink, .blink {

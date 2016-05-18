@@ -1,5 +1,33 @@
 setHealth(4);
 
+var prompt = ">> ";
+var br = "<br />";
+var charName = "";
+
+function resetLog() {
+	$('#output').empty();
+}
+
+function logOutput(text) {
+	$('#output').append(text);
+}
+
+function startGame() {
+	resetLog();
+	logOutput(`${prompt} Please enter a name for your character${br}`);
+	logOutput(`<input id='charName' placeholder='Character name here'>${br}<button onClick='gameStarted()'>Submit</button>`);
+}
+
+function gameStarted() {
+	charName = $("#charName").val();
+	resetLog();
+	logOutput(`Welcome ${charName}, to my little dungeon crawler.${br}Obviously, I'm still working on the content...${br}Check back later to get further in the adventure!`);
+}
+
+function outputName() {
+	return charName;
+}
+
 function halfHearted(state) {
 	if (state === true) {
 		var hpValue = $('td').length - 1;
@@ -32,3 +60,6 @@ function setHealth(num) {
 		$("tr").append("<td></td>");
 	}
 }
+
+// $('#output').append(`${prompt} The goblin swings at you.${br}`);
+// $('#output').append("Ouch, you lost a heart!");
