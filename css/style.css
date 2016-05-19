@@ -4,7 +4,7 @@ td {
 	width: 11px;
 }
 
-h1 {
+h1, p {
   font-family: Helvetica, Arial, sans-serif
 }
 
@@ -24,6 +24,8 @@ button.start {
   font-size: 13px;
   height: 75px;
   margin-top: 20px;
+  min-height: 100px;
+  min-width: 350px;
   padding: 8px;
   width: 400px;
 }

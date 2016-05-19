@@ -15,10 +15,16 @@
 		</tr>
 	</table>
 	<br />
-	<button class="hit" onClick="hit()">Take a hit</button>
+	<button class="hit" onClick="game.hit()">Take a hit</button>
 	<br />
-	<button class="start" onClick="startGame()">Begin the game</button>
+	<button class="start" onClick="game.startGame()">Begin the game</button>
 	<div id="output"></div>
+	<p>Output Window Settings</p>
+	<button class="unwiden" onClick="game.logProperties('-', 'width')">Narrower</button>
+	<button class="widen" onClick="game.logProperties('+', 'width')">Wider</button>
+	<br />
+	<button class="shorter" onClick="game.logProperties('-', 'height')">Shorter</button>
+	<button class="taller" onClick="game.logProperties('+', 'height')">Taller</button>
 
 	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>

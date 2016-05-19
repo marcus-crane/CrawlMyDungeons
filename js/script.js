@@ -1,67 +1,74 @@
-setHealth(4);
+var game = {
+	resetLog: function() {
+		$('#output').empty();
+	},
+	logOutput: function(text) {
+		$('#output').append(text);
+	},
+	logProperties: function(operator, property) {
+		$('#output').css(`${property}`, `${operator}=25`);
+	},
+	setHealth: function(num) {
+		$("tr").empty();
+		for (var i = 0; i < num; i++) {
+			$("tr").append("<td></td>");
+		}
+	},
+	halfHearted: function(state) {
+		if (state === true) {
+			hpValue = $('td').length - 1;
+			$('td')[hpValue].className = "blink";
 
-var prompt = ">> ";
-var br = "<br />";
-var charName = "";
-
-logOutput(`${prompt} Ready when you are`)
-
-function resetLog() {
-	$('#output').empty();
+			console.log('Adding blink class');
+		} else {
+			hpValue = $('td').length - 1;
+			if (hpValue === 0) {
+				$("tr").empty();
+				$("tr").append("You died.");
+				status = "dead";
+				console.log(status);
+			} else {
+				game.setHealth(hpValue);
+			}
+			console.log(hpValue)
+			console.log('Removed a heart.');
+		}
+	},
+	halfHeartedCheck: function() {
+		if ($('.blink').length !== 0) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	hit: function() {
+		if (status === "dead") {  } else {
+			if (game.halfHeartedCheck() === true) {
+				game.halfHearted(false)
+			} else if (game.halfHeartedCheck() === false) {
+				game.halfHearted(true)
+			}
+		}
+	},
+	outputName: function() {
+		return game.charName;
+	},
+	startGame: function() {
+		game.resetLog();
+		game.logOutput(`${prompt} Please enter a name for your character${br}`);
+		game.logOutput(`<input id='charName' placeholder='Character name here'>${br}<button onClick='game.gameStarted()'>Submit</button>`);
+	},
+	gameStarted: function() {
+		charName = $("#charName").val();
+		game.resetLog();
+		game.logOutput(`Welcome ${charName}, to my little dungeon crawler.${br}Obviously, I'm still working on the content...${br}Check back later to get further in the adventure!`);
+	},
 }
 
-function logOutput(text) {
-	$('#output').append(text);
-}
+prompt = ">> ";
+br = "<br />";
+charName = "";
+status = "alive";
 
-function startGame() {
-	resetLog();
-	logOutput(`${prompt} Please enter a name for your character${br}`);
-	logOutput(`<input id='charName' placeholder='Character name here'>${br}<button onClick='gameStarted()'>Submit</button>`);
-}
-
-function gameStarted() {
-	charName = $("#charName").val();
-	resetLog();
-	logOutput(`Welcome ${charName}, to my little dungeon crawler.${br}Obviously, I'm still working on the content...${br}Check back later to get further in the adventure!`);
-}
-
-function outputName() {
-	return charName;
-}
-
-function halfHearted(state) {
-	if (state === true) {
-		var hpValue = $('td').length - 1;
-		$('td')[hpValue].className = "blink";
-	} else {
-		hpValue = $('td').length - 1;
-		setHealth(hpValue);
-	}
-}
-
-function halfHeartedCheck() {
-	if ($('.blink').length !== 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function hit() {
-	if (halfHeartedCheck() === true) {
-		halfHearted(false)
-	} else if (halfHeartedCheck() === false) {
-		halfHearted(true)
-	}
-}
-
-function setHealth(num) {
-	$("tr").empty();
-	for (var i = 0; i < num; i++) {
-		$("tr").append("<td></td>");
-	}
-}
-
-// $('#output').append(`${prompt} The goblin swings at you.${br}`);
-// $('#output').append("Ouch, you lost a heart!");
+game.setHealth(4);
+game.startGame();
