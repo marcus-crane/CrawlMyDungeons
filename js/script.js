@@ -1,4 +1,6 @@
 var game = {
+	prompt: ">> ",
+	br: "<br />",
 	resetLog: function() {
 		$('#output').empty();
 	},
@@ -18,14 +20,12 @@ var game = {
 		if (state === true) {
 			hpValue = $('td').length - 1;
 			$('td')[hpValue].className = "blink";
-
-			console.log('Adding blink class');
 		} else {
 			hpValue = $('td').length - 1;
 			if (hpValue === 0) {
 				$("tr").empty();
 				$("tr").append("You died.");
-				status = "dead";
+				character.status = "dead";
 				console.log(status);
 			} else {
 				game.setHealth(hpValue);
@@ -55,20 +55,20 @@ var game = {
 	},
 	startGame: function() {
 		game.resetLog();
-		game.logOutput(`${prompt} Please enter a name for your character${br}`);
-		game.logOutput(`<input id='charName' placeholder='Character name here'>${br}<button onClick='game.gameStarted()'>Submit</button>`);
+		game.logOutput(`${game.prompt} Please enter a name for your character${game.br}`);
+		game.logOutput(`<input id='charName' placeholder='Character name here'>${game.br}<button onClick='game.onBoarding()'>Submit</button>`);
 	},
-	gameStarted: function() {
-		charName = $("#charName").val();
+	onBoarding: function() {
+		character.name = $("#charName").val();
 		game.resetLog();
-		game.logOutput(`Welcome ${charName}, to my little dungeon crawler.${br}Obviously, I'm still working on the content...${br}Check back later to get further in the adventure!`);
+		game.logOutput(`Welcome ${character.name}, to my little dungeon crawler.${game.br}Obviously, I'm still working on the content...${game.br}Check back later to get further in the adventure!`);
 	},
 }
 
-prompt = ">> ";
-br = "<br />";
-charName = "";
-status = "alive";
+var character = {
+	name: "",
+	status: "alive",
+}
 
 game.setHealth(4);
 game.startGame();
